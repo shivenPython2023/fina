@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, url_for, send_from_directory
+application= Flask(__name__)
+application.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 import os
 import cv2
 import numpy as np
@@ -10,8 +12,6 @@ import warnings
 from sklearn.cluster import KMeans
 import webcolors
 from werkzeug.utils import secure_filename
-application= Flask(__name__)
-application.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 
 @application.route('/')
