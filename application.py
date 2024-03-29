@@ -19,6 +19,9 @@ matplotlib.use('Agg')
 application= Flask(__name__)
 application.secret_key = b'_5#y2L"F4Q8z\n\xec]/' 
 
+@application.route('/')
+def index():
+  return 'helo world',render_template('index.html')
 
 
 
@@ -356,11 +359,6 @@ def get_dominant_colors(image_path, output_path, num_colors):
         draw.rectangle([0, i * height, width, (i + 1) * height], fill=(color[0], color[1], color[2]))
 
     palette_img.save(output_path)
-
-
-@application.route('/')
-def index():
-  return render_template('index.html')
 
 
 
