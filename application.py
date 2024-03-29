@@ -12,7 +12,7 @@ from flask import Flask, render_template, request, session, redirect, url_for, s
 #from werkzeug.utils import secure_filename
 #matplotlib.use('Agg')
 application= Flask(__name__)
-#application.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+application.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 
 @application.route('/')
