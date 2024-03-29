@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Color My Painting</title>
+   <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">   
+</head>
+<style>
+   .upload {
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       height: 10vh;     
+   }
+   .horizontal-line {
+       display: flex;
+       align-items: center;
+   }
+   .horizontal-line hr {
+       flex: 1;
+       border: none;
+       height: 1px;
+       background-color: black;
+   }
+   .horizontal-line .button-container {
+       display: flex;
+       gap: 10px;
+       padding: 10px;
+   }
+   .horizontal-line .button-container button {
+       padding: 10px 20px;
+       background-color: #e45e46;
+       color: white;
+       border: none;
+       border-radius: 5px;
+       cursor: pointer;
+   }  
+   body {
+       margin: 0;
+       padding: 0;
+       font-family: 'Montserrat', sans-serif;
+
+
+   }
+
+
+   .container {
+       max-width: 800px;
+       margin: 0 auto;
+       padding: 20px;
+   }
+
+
+   h1 {
+       text-align: center;
+       font-size: 40px;
+       color: #e45e46;
+
+
+   }
+   p{
+       text-align: center;
+       color: rgb(37, 36, 36);
+       margin-left: 2.5cm;
+       margin-right: 2.5cm;
+   }
+
+
+   .buttons {
+       display: flex;
+       justify-content: center;
+       margin-top: 20px;
+   }
+
+
+   button {
+       padding: 10px 20px;
+       margin: 0 10px;
+       font-size: 16px;
+       cursor: pointer;
+       text-align: center;
+   }
+
+
+   /* Button Styles */
+   .buttoncontainer {
+       text-align: center;
+       margin: 40px 4cm; /* Margin on the left and right */
+   }
+
+
+
+
+</style>
+<body>
+   <h1>Color My Painting</h1>
+   <div class="horizontal-line">
+       <hr>
+       <div class="button-container">
+           <button onclick="window.location.href = '/';">Home</button>
+           <button onclick="window.location.href = '/color.html';">Let's go!</button>
+       </div>
+       <hr>
+   </div>
+   <p>Upload an image and watch the magic of the Drawing Assistant! It may take a couple of minutes to process. </p>
+   <div class="upload">
+       <form action="/color" method="POST" enctype="multipart/form-data">
+           <input type="file" name="file" accept="image/*" required>
+           <button type="submit">Run</button>
+       </form>
+   </div>
+</body>
+</html>
+

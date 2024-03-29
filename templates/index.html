@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
+    <title>Drawing Assistant</title>
+</head>
+<style>
+    .horizontal-line {
+        display: flex;
+        align-items: center;
+    }
+    .horizontal-line hr {
+        flex: 1;
+        border: none;
+        height: 1px;
+        background-color: black;
+    }
+    .horizontal-line .button-container {
+        display: flex;
+        gap: 10px;
+        padding: 10px;
+    }
+    .horizontal-line .button-container button {
+        padding: 10px 20px;
+        background-color: #e45e46;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }   
+    body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+
+    }
+
+    .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 40px;
+        color: #e45e46;
+
+    }
+    p{
+        text-align: center;
+        color: rgb(37, 36, 36);
+        margin-left: 2.5cm;
+        margin-right: 2.5cm;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    button {
+        padding: 10px 20px;
+        margin: 0 10px;
+        font-size: 16px;
+        cursor: pointer;
+        text-align: center;
+    }
+    .image-banner {
+        text-align: center;
+        margin-top: 30px; /* Adjust the margin as needed */
+    }
+    /* Q&A Section Styles */
+    .qa-section {
+        background-color: #ffffff; /* White background */
+        padding: 20px;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 2.5cm;
+    }
+
+
+    .qa-button-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-bottom: 10px;
+        }
+
+    .qa-button {
+        background-color: #e45e46; /* Reddish color */
+        color: #ffffff; /* White text */
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        width: calc(100% - 2.5cm);
+        transition: transform 0.3s ease; /* Smooth transition for arrow rotation */
+        text-align: left;
+        margin-bottom: 5px; /* Add margin below each button */
+    }
+
+    .qa-answer {
+        background-color: #f2f2f2; /* Light gray background */
+        color: #555555; /* Dark gray text */
+        padding: 10px;
+        margin-top: 10px;
+        display: none; /* Initially hidden */
+        width: calc(100% - 2.5cm); /* Full width with margin */
+        text-align: left;
+    }
+
+    .qa-answer.active {
+        display: block; /* Show the answer when active */
+    }
+
+    .qa-button span {
+        display: inline-block;
+        transition: transform 0.3s ease;
+    }
+
+    .qa-button.rotate span {
+        transform: rotate(180deg); /* Rotate the arrow when active */
+    }
+            /* Link Styles */
+    .link-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 2.5cm; /* Margin on the left and right */
+    }
+
+    .link {
+        background-color: #e45e46; /* Reddish color */
+        color: #ffffff; /* White text */
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    /* Button Styles */
+    .buttoncontainer {
+        text-align: center;
+        margin: 40px 4cm; /* Margin on the left and right */
+    }
+
+    .get-started-button {
+        background-color: navy; /* Navy blue background */
+        color: white; /* White text */
+        padding: 20px 40px;
+        border: none;
+        border-radius: 8px;
+        font-size: 24px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .get-started-button:hover {
+        background-color: #001f4d; /* Darker navy blue on hover */
+    }
+
+    .link:hover {
+        background-color: #cc6333; /* Darker reddish color on hover */
+    }
+    /* Banner container */
+    .baner {
+        background-color: #e45e46;
+        color: white;
+        text-align: center;
+        margin-top:40px;
+        padding: 20px;
+        width: 100%; /* Adjust the width as needed */
+        margin: 0 auto; /* Center horizontally */
+        border-radius: 10px;
+    }
+
+    /* Paragraph inside the banner */
+    .baner p {
+        color:white;
+    }
+</style>
+<body>
+    <!--top of home page & title-->
+    <h1>Drawing Assistant</h1>
+    <div class="horizontal-line">
+        <hr>
+        <div class="button-container">
+            <button onclick="window.location.href = '/';">Home</button>
+            <button onclick="window.location.href = '/color.html';">Let's go!</button>
+        </div>
+        <hr>
+    </div>
+    <!--banner-->
+    <div class="image-banner">
+        <img src="{{ url_for('static', filename='banner.png') }}" alt="Banner Image">
+    </div>
+    <!--welcome to drawing assistant-->
+    <h1>Welcome to Drawing Assistant</h1>
+    <p>At Drawing Assistant, we believe that everyone has an artist within them waiting to be discovered. Using our software, you can learn the fundamentals of drawing from your own computer. You can upload any painting that you would like to draw, and the drawing assistant breaks down the painting for you showing you step by step how to draw it. The steps that we show to help you draw your painting are used by even the best artists in the world. Good luck drawing!</p>
+    
+    <!-- Q&A Section -->
+    <h1>Frequently asked Questions</h1>
+    <div class="qa-section">
+        <div class="qa-button-container">
+            <button class="qa-button" onclick="toggleAnswer(1)">Do I need any prior experience to use the drawing assistant? <span>&#9660;</span></button>
+            <div id="answer-1" class="qa-answer">
+                No, the Drawing Assistant is meant for beginers and gives them a place to start their journey.
+            </div>
+        </div>
+        <div class="qa-button-container">
+            <button class="qa-button" onclick="toggleAnswer(2)">How do I use the Drawing Assistant? <span>&#9660;</span></button>
+            <div id="answer-2" class="qa-answer">
+                You can upload ANY image from your computer and the drawing assistant's technology will guide you to the finished result. You can start by clicking 'Let's go' at the top of this page, and best of all it's free!
+            </div>
+        </div>
+    </div>
+    <!--materials-->
+    <h1>What materials should I use?</h1>
+    <p>There are many different mediums and ways to color your paintings. For beginers we highly suggest oil pastels and oil paint. For paper and a medium to draw on we suggest canvas mi-tienes. For a pencil set/charcol we suggest Generals. These are just suggestions, go with whatever you feel comforatable with.</p>
+    <!--links-->
+    <div class="link-container">
+        <a href="https://www.amazon.com/Mungyo-Gallery-Soft-Oil-Pastels/dp/B004WQHY4S/ref=sr_1_8?crid=1AAAFKZGBBC5O&dib=eyJ2IjoiMSJ9.kf0gN1OncYyK4cNez-0lq_z_kw0MMMqa3UI6ANcVgBmIus-w57HrL7ENfhuc5PqOR4LXMOENz2_7EnvZo18NX6O1von14QLlOB-Y3lT9D-rNh_xr8uKeO10G5XfTv2gxDmeJtGHHrNQqst7uXyz--_67GCcdTIq2qnmGSYTlwlJzCDhGZtyDwIws1YsPb7MQsP6BreMP1bV8PaRdmNWrCecAx9PxTwQ95wY7I-le59zwsCKvSgX9l3Sne17RI3uQTCsnX5esvTgK-amtw3ib4aVYywdqp3RVyzO6JtZM0jM.OB_hZHwOospAx__AchsMu3gNxAFy2rVVbb9rkdkJDpc&dib_tag=se&keywords=oil+pastels&qid=1708790594&sprefix=oil+pastels%2Caps%2C233&sr=8-8" class="link">Oil pastels</a>
+        <a href="https://www.amazon.com/Tubes-Zenacolor-Oil-Paint-Professional/dp/B083M2Z7HD/ref=sr_1_8?crid=1P5UPIROZ2EL4&dib=eyJ2IjoiMSJ9.XtZmIkjSre-pt-7gxIwGezOEW7Wx2WjGQQM-4XSA-tr02dRl44IVa0OJvuxa18E-Pz2EIngS-9OdwaT9WqtP0daS3gwRDf8d6DvoAXmnMF4esFFlzTdy8ripfVdOHAZw9SnqAXPWdLeeX6sz-_QjRFgUOSRIrbbFhUk7YW5sHahDx_yJuPy6WlfURxuBc1Sf9Mcw8I_O-LQkRNK5D3w1x63J1Q9Q8Q296WicTd-RHAcRg1Vc_J96x7p__2zM9FNNEYoNFBitKr9yEbQ1q5yCRo_L_EVZQOmW0Z-KB74ERMU.YiA0VA68Q27gE_MgTmSgaNq3FesrXGEiBAB6dScyIJg&dib_tag=se&keywords=oil+paint&qid=1708790660&sprefix=oil+pai%2Caps%2C228&sr=8-8" class="link">Oil paint</a>
+        <a href="https://www.amazon.com/Mi-Teintes-Pastel-Gray-Tones-Fold/dp/B004Z1RLOS/ref=sr_1_2?crid=26LN0JZI9VCBL&dib=eyJ2IjoiMSJ9.5TVEnivRILBCKLllwySvwVGOyuY9dcaTYlS_7A4W1brphnjoaJZq826nCtXwSDAEwLgUtP9F39S27b5srcIw6BKPB-TxJCdwYl_eUj3J9i6BKTf0a-3Q_HKbzSCK4HZSOdnIo54rvciR0t2FVT8oRdskPFARR5owX6gMcgD6prGzyVZ9aXYkzSkEB3zwzJOXnljncCJ3ETzs5OBGmz_jXNrC8chgvrK40zTvcODC90zeeBZifObwijbR3y3s5gh92wicEKaGqWpZHQV-ipGLB2TbE7_j3Hcqdp4igUQQnoo.rvasCzpOnxb2_qGpLkK_SdVgSZ9_dJSl0OKLxm8kJH0&dib_tag=se&keywords=canson%2Bmi%2Bteintes%2Bpastel%2Bpaper%2Bgray&qid=1708791004&sprefix=canson%2Bmi%2Bteintes%2Bpastel%2Caps%2C254&sr=8-2&th=1" class="link">Paper</a>
+        <a href="https://www.amazon.com/General-Pencil-20GP-Generals-Sketching/dp/B0001XD75G/ref=sr_1_13?crid=3W56Y5FA8VDQJ&dib=eyJ2IjoiMSJ9.1_1INbcCd-z_mvKealu0mve_KhxSh3fOuS_MhmpZPUv7dcjG1MbTeh2KlrEGLUzHR6XGlRekSj7dcLxIf25QEd1H2qtK5LMXXRXa23Add9-GvRnNXf_95u0OVPgMLJqwlPU1gpZTs1SsNTaiMRrwXlsV366iekEhv1XyrVjX4ZgXbcmPkBNUydb1X7ZCU5HMaF0pjgYBBwFmEAlt4aceFBgXYNEk2zoIsEf87VXpaDGOs2m-p0kXBlrYXZv8S5t8GPyJZ3yeaQpjM9XK9QVS1viNMCgB3V2hTLcolwnS2Rg.RYc-xjSr5joQFYJ9O_XhYs7F1fVdkyQGDEYSrLzUJM0&dib_tag=se&keywords=Generals+pencils&qid=1708791081&sprefix=generals+pencil%2Caps%2C216&sr=8-13" class="link">Pencils</a>
+        <a href="https://www.amazon.com/Blending-Tortillions-Blenders-Sandpaper-Sharpener/dp/B0851M3749/ref=sr_1_1_sspa?crid=XCQJNDZ7S3L0&dib=eyJ2IjoiMSJ9.G-nfXu2B7XecsSxg0_DKpemi39F2MAjZsIwrJX5EeyVchFXoelu2vUgWdR6yfQxWAmH5WnNMpWzYiCcIZvGnZJxKYlQ6GDtMsZHxoAd4Bkye_mgE2qghHp2XhJ2DhF8N-hLybT1n1s4lE-42Kg0cC3Dxe90wq7yITQ0h-dNIta4aQPOpXo-WYpS7j3ysrHEKAFQ-Z8FkW0-mJlWnCoZMPcn7xmKSxtOwIFGWNdATXUsBgmmo8uMQwSWK_36PbQHHhEeVRZuz0BuFTc0ZjatLWWzTwLlrB3PPn-rPDFQBJps.ToGBF93gKq_DplOaRuMfb3dUszgTc1rQlyIpToEebk4&dib_tag=se&keywords=blending+stump&qid=1708791159&sprefix=blending+s%2Caps%2C222&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1" class="link">Blenders</a>
+    </div>
+    <!--get started-->
+    <div class="buttoncontainer">
+        <a href="/color.html"><button class="get-started-button">Get Started with Drawing Assistant!</button></a>
+    </div>
+    <div class="baner">
+        <h2>About Us</h2>
+        <p>Drawing Assistant was made by a local group in Cumberland, Rhode Island composed of middle schoolers. Our mission is to foster creativity and provide a supportive environment for individuals of all ages and skill levels to explore the world of drawing. We offer high level technology to aid you in your drawing journey.</p>
+    </div>
+
+    <script>
+        function toggleAnswer(id) {
+            var answer = document.getElementById("answer-" + id);
+            var button = document.querySelector("#answer-" + id + " .qa-button");
+            answer.classList.toggle("active");
+            button.classList.toggle("rotate");
+        }
+    </script>
+</body>
+</html>

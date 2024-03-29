@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
+    <title>Color Processing Result</title>
+    <script>
+        function calculateRatio() {
+            // Check if input fields are filled
+            var widthInput = document.getElementById("width");
+            var lengthInput = document.getElementById("length");
+
+            if (widthInput.value === "" || lengthInput.value === "") {
+                alert("Please fill in both width and length fields.");
+                return; // Exit function if any input field is empty
+            }
+
+            // Get user input values
+            var userWidth = parseFloat(widthInput.value);
+            console.log(userWidth)
+            var userLength = parseFloat(lengthInput.value);
+            console.log(userLength)
+
+            // Get image dimensions
+            var img = document.getElementById("input_image");
+            var imageWidth = img.naturalWidth;
+            console.log(imageWidth)
+            var imageLength = img.naturalHeight;
+
+            // Calculate ratios
+            var userRatio = userWidth / userLength;
+            var imageRatio = imageWidth / imageLength;
+
+            // Compare ratios and determine adjustments
+            var message = "";
+            if (imageRatio > userRatio) {
+                // Image has higher width relative to length compared to user input
+                var widthToCut = Math.abs((userLength * imageWidth / imageLength) - userWidth).toFixed(1);
+                message = "You need to cut off " + widthToCut + " cm from the length to match the image ratio.";
+            } else if (imageRatio < userRatio) {
+                // Image has higher length relative to width compared to user input
+                var lengthToCut = Math.abs((userWidth * imageLength / imageWidth) - userLength).toFixed(1);
+                message = "You need to cut off " + lengthToCut + " cm from the width to match the image ratio.";
+            } else {
+                message = "The ratio of your paper matches the ratio of the image.";
+            }
+
+            // Display result
+            document.getElementById("result").innerHTML = message;
+        }
+    </script>
+    <style>
+        /* CSS styles (unchanged) */
+        .horizontal-line {
+            display: flex;
+            align-items: center;
+        }
+        .horizontal-line hr {
+            flex: 1;
+            border: none;
+            height: 1px;
+            background-color: black;
+        }
+        .horizontal-line .button-container {
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+        }
+        .horizontal-line .button-container button {
+            padding: 10px 20px;
+            background-color: #e45e46;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }   
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 40px;
+            color: #e45e46;
+        }
+        p {
+            text-align: center;
+            color: rgb(37, 36, 36);
+            margin-left: 2.5cm;
+            margin-right: 2.5cm;
+        }
+        .image-container {
+            text-align: center;
+        }
+        .grid-input {
+            margin-left: 3cm;
+        }
+        .continue {
+            display: block;
+            margin: 20px auto; /* Center the button horizontally */
+            background-color: rgb(67, 111, 231); /* Navy blue background */
+            color: rgb(255, 255, 255); /* White text */
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .continue:hover {
+            background-color: rgb(51, 87, 184); /* Darker navy blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lets draw my painting step by step!</h1>
+        <div class="horizontal-line">
+            <hr>
+            <div class="button-container">
+                <button onclick="window.location.href = '/';">Home</button>
+                <button onclick="window.location.href = '/color.html';">Let's go!</button>
+            </div>
+            <hr>
+        </div>
+        <h1>The sketch</h1>
+        <p>First, we need to know how big your paper is, so we can explain to you how to draw a grid for a more accurate sketch!</p>
+        <!-- Display image in the center -->
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='rect.jpg') }}" alt="Rectangle Image">
+        </div>
+        <p>Please enter the width of your paper in cm (short side):</p>
+        <div class="grid-input">
+            <input type="number" id="width" step="0.5" placeholder="Width in cm" required><br>
+        </div>
+
+        <p>Please enter the length of your paper in cm (long side):</p>
+        <div class="grid-input">
+            <input type="number" id="length" step="0.5" placeholder="Length in cm" required><br>
+        </div>
+
+        <!-- Input image -->
+        <img src="{{ url_for('uploaded_file', filename=image_url) }}" id="input_image" style="display:none; max-width: 300x; max-height: 300px;">
+        <button class="continue" onclick="calculateRatio()">Continue</button><br>
+        <div id="result"></div>
+        <img src="{{ url_for('uploaded_file', filename=image_name) }}" alt="Processed Image" style="max-width: 300px; max-height: 300px;">
+        <button><a href="{{ url_for('index') }}">Return to Home</a></button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
+   <title>Color Processing Result</title>
+   <style>
+       /* CSS styles */
+       body {
+           margin: 0;
+           padding: 0;
+           font-family: 'Montserrat', sans-serif;
+       }
+       .container {
+           max-width: 1200px;
+           margin: 0 auto;
+           padding: 20px;
+           text-align:center;
+       }
+       h1 {
+           text-align: center;
+           font-size: 40px;
+           color: #e45e46;
+       }
+       .horizontal-line {
+           display: flex;
+           align-items: center;
+       }
+       .horizontal-line hr {
+           flex: 1;
+           border: none;
+           height: 1px;
+           background-color: black;
+       }
+       .horizontal-line .button-container {
+           display: flex;
+           gap: 10px;
+           padding: 10px;
+       }
+       .horizontal-line .button-container button {
+           padding: 10px 20px;
+           background-color: #e45e46;
+           color: white;
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+       }
+       .display {
+           max-width: 1200px;
+           margin: 0 auto;
+           padding: 20px;
+           display: flex;
+           flex-wrap: wrap;
+           justify-content: center;
+       }
+       .image-wrapper1 {
+           margin: 10px;
+           text-align: center;
+       }
+       .image-wrapper1 img {
+    max-width: 100%;
+    max-height: 250px;
+    min-width:150px;
+    min-height:300px;
+    cursor: pointer;
+    }
+       .image-caption {
+           margin-top: 10px;
+           font-size: 16px;
+       }
+       .butt-container{
+        display: flex;
+        justify-content: center; /* This will horizontally center the buttons */
+       }
+       .gridbuttons {
+            padding: 12.5px 25px;
+            background-color: #e45e46;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 17px;
+            margin: 0 10px;
+        }
+        .next-page{
+            background-color: navy; /* Navy blue background */
+        color: white; /* White text */
+        padding: 20px 40px;
+        border: none;
+        border-radius: 8px;
+        font-size: 24px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        }
+   </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lets draw my painting step by step!</h1>
+        <div class="horizontal-line">
+            <hr>
+            <div class="button-container">
+                <button onclick="window.location.href = '/';">Home</button>
+                <button onclick="window.location.href = '/color.html';">Let's go!</button>
+            </div>
+            <hr>
+        </div>
+        <h1>The sketch</h1>
+        <p>The sketch is a really important part of a painting. Start by getting a piece of paper, and pencil. You can then follow our step by step sketching images until you are done. If you need additional help, you can add a grid to the sketch. Copy the grid on your paper, and match each grid box to the one on the screen. Remember, draw lightly, and good luck!</p>
+        <div class="butt-container">
+            <button class='gridbuttons' onclick="togrid()">Add a grid to sketches</button>
+            <button class='gridbuttons' onclick="tosketch()">Display sketches</button>
+        </div>
+    </div>
+    <div class="display">
+        <div class="image-wrapper1" id="sketch1" onclick="openImage('{{ url_for('uploaded_file', filename=plain) }}')">
+            <img src="{{ url_for('uploaded_file', filename=plain) }}" alt="Plain Image">
+            <div class="image-caption">Blank Canvas</div>
+        </div>
+        <div class="image-wrapper1" id="sketch2" onclick="openImage('{{ url_for('uploaded_file', filename=sketch2) }}')">
+            <img src="{{ url_for('uploaded_file', filename=sketch2) }}" alt="Sketch Image">
+            <div class="image-caption">Sketch Image #1</div>
+        </div>
+        <div class="image-wrapper1" id="sketch3" onclick="openImage('{{ url_for('uploaded_file', filename=sketch3) }}')">
+            <img src="{{ url_for('uploaded_file', filename=sketch3) }}" alt="Sketch Image">
+            <div class="image-caption">Sketch Image #2</div>
+        </div>
+        <div class="image-wrapper1" id="sketch4" onclick="openImage('{{ url_for('uploaded_file', filename=sketch4) }}')">
+            <img src="{{ url_for('uploaded_file', filename=sketch4) }}" alt="Sketch Image">
+            <div class="image-caption">Sketch Image #3</div>
+        </div>
+    </div>
+    <div class="container">
+        <p>When your done with the sketch, click the button at the bottom and color your painting!</p>
+    </div>
+    <div class="butt-container">
+        <button class="next-page" onclick="window.location.href = '/realcolor.html';">Color my painting!</button>
+    </div>
+    <script>
+var gyat = false;
+var file_name = "{{ filename }}"; // Assuming `file_name` is properly passed from your Flask route
+
+// Function to replace images with grid images on button click
+function togrid() {
+    gyat = true;
+    var grid2 = "uploads/" + file_name + "grid2.jpg";
+    var grid3 = "uploads/" + file_name + "grid3.jpg";
+    var grid4 = "uploads/" + file_name + "grid4.jpg";
+
+    // Update the onclick attribute for grid images to open in a new tab
+    document.getElementById('sketch2').setAttribute('onclick', 'openImage("' + grid2 + '")');
+    document.getElementById('sketch3').setAttribute('onclick', 'openImage("' + grid3 + '")');
+    document.getElementById('sketch4').setAttribute('onclick', 'openImage("' + grid4 + '")');
+
+    document.getElementById('sketch2').innerHTML = '<img src="' + grid2 + '" alt="Grid Image" class="image-wrapper img"> <div class="image-caption">Grid Image</div> ';
+    document.getElementById('sketch3').innerHTML = '<img src="' + grid3 + '" alt="Grid Image" class="image-wrapper img"> <div class="image-caption">Grid Image</div>';
+    document.getElementById('sketch4').innerHTML = '<img src="' + grid4 + '" alt="Grid Image" class="image-wrapper img"> <div class="image-caption">Grid Image</div>';
+}
+
+
+// Function to replace images with sketch images on button click
+function tosketch() {
+    var sketch2 = "uploads/" + file_name + "outline_2.jpg";
+    var sketch3 = "uploads/" + file_name + "outline_3.jpg";
+    var sketch4 = "uploads/" + file_name + "outline_4.jpg";
+    
+    if (gyat == true) {
+        document.getElementById('sketch2').innerHTML = '<img src="' + sketch2 + '" alt="Sketch Image"><div class="image-caption">Sketch Image</div>';
+        document.getElementById('sketch3').innerHTML = '<img src="' + sketch3 + '" alt="Sketch Image"><div class="image-caption">Sketch Image</div>';
+        document.getElementById('sketch4').innerHTML = '<img src="' + sketch4 + '" alt="Sketch Image"><div class="image-caption">Sketch Image</div>';            
+    } else {
+        alert("Sketches are already being displayed.");
+    }
+    // Attach openImage function back to sketch images
+    document.getElementById('sketch2').setAttribute('onclick', 'openImage("{{ url_for('uploaded_file', filename=sketch2) }}")');
+    document.getElementById('sketch3').setAttribute('onclick', 'openImage("{{ url_for('uploaded_file', filename=sketch3) }}")');
+    document.getElementById('sketch4').setAttribute('onclick', 'openImage("{{ url_for('uploaded_file', filename=sketch4) }}")');
+    // Restore image captions
+    document.getElementById('sketch2').querySelector('.image-caption').innerText = 'Sketch Image';
+    document.getElementById('sketch3').querySelector('.image-caption').innerText = 'Sketch Image';
+    document.getElementById('sketch4').querySelector('.image-caption').innerText = 'Sketch Image';
+}
+
+// JavaScript function to open images in a new tab
+function openImage(url) {
+    window.open(url, '_blank');
+}
+</script>
+ 
+</body>
+</html>
+

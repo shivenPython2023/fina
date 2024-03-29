@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
+  <title>Color Processing Result</title>
+  <style>
+      /* CSS styles */
+      body {
+          margin: 0;
+          padding: 0;
+          font-family: 'Montserrat', sans-serif;
+      }
+      .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 20px;
+          text-align: center;
+      }
+      h1 {
+          text-align: center;
+          font-size: 40px;
+          color: #e45e46;
+      }
+      .horizontal-line {
+          display: flex;
+          align-items: center;
+      }
+      .horizontal-line hr {
+          flex: 1;
+          border: none;
+          height: 1px;
+          background-color: black;
+      }
+      .horizontal-line .button-container {
+          display: flex;
+          gap: 10px;
+          padding: 10px;
+      }
+      .horizontal-line .button-container button {
+          padding: 10px 20px;
+          background-color: #e45e46;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+      }
+      .display {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 20px;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+      }
+      .image-wrapper {
+          margin: 10px;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+      }
+      .image-wrapper img {
+          min-width: 30px;
+          max-height: 250px;
+          min-height: 250px;
+          cursor: pointer;
+      }
+      .image-caption {
+          margin-top: 10px;
+          font-size: 16px;
+      }
+      .butt-container{
+        display: flex;
+        justify-content: center; /* This will horizontally center the buttons */
+       }
+       .home{
+            padding: 12.5px 25px;
+            background-color: #e45e46;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 17px;
+            margin: 0 10px;
+        }
+  </style>
+</head>
+<body>
+   <div class="container">
+       <h1>Lets draw my painting step by step!</h1>
+       <div class="horizontal-line">
+           <hr>
+           <div class="button-container">
+               <button onclick="window.location.href = '/';">Home</button>
+               <button onclick="window.location.href = '/color.html';">Let's go!</button>
+           </div>
+           <hr>
+       </div>
+       <h1>Color</h1>
+       <p>Now it is time for color! You can you the images that we provide you as a guidline for your process in coloring in your painting. We also provide a color pallete for each stage, so you know what colors to use. Good luck!</p>
+   </div>
+   <div class="display">
+    <div class="image-wrapper">
+        <div class="image-container" onclick="openImage('{{ url_for('uploaded_file', filename=im3) }}')">
+            <img src="{{ url_for('uploaded_file', filename=im3) }}" alt="Sketch Image">
+            <img src="{{ url_for('uploaded_file', filename=col3) }}" alt="Color Image">
+        </div>
+        <div class="image-caption">Color image #1</div>
+    </div>
+    <div class="image-wrapper">
+        <div class="image-container" onclick="openImage('{{ url_for('uploaded_file', filename=im3) }}')">
+            <img src="{{ url_for('uploaded_file', filename=im4) }}" alt="Sketch Image">
+            <img src="{{ url_for('uploaded_file', filename=col4) }}" alt="Color Image">
+        </div>
+        <div class="image-caption">Color image #1</div>
+    </div>
+    <div class="image-wrapper">
+        <div class="image-container" onclick="openImage('{{ url_for('uploaded_file', filename=im4) }}')">
+            <img src="{{ url_for('uploaded_file', filename=im5) }}" alt="Sketch Image">
+            <img src="{{ url_for('uploaded_file', filename=col5) }}" alt="Color Image">
+        </div>
+        <div class="image-caption">Color image #1</div>
+    </div>
+    <div class="image-wrapper">
+        <div class="image-container" onclick="openImage('{{ url_for('uploaded_file', filename=im6) }}')">
+            <img src="{{ url_for('uploaded_file', filename=im6) }}" alt="Sketch Image">
+            <img src="{{ url_for('uploaded_file', filename=col6) }}" alt="Color Image">
+        </div>
+        <div class="image-caption">Color image #2</div>
+    </div>
+    <div class="image-wrapper">
+        <div class="image-container" onclick="openImage('{{ url_for('uploaded_file', filename=im7) }}')">
+            <img src="{{ url_for('uploaded_file', filename=im7) }}" alt="Sketch Image">
+            <img src="{{ url_for('uploaded_file', filename=col7) }}" alt="Color Image">
+        </div>
+        <div class="image-caption">Color image #3</div>
+    </div>
+    <div class="image-wrapper">
+        <div class="image-container" onclick="openImage('{{ url_for('uploaded_file', filename=im8) }}')">
+            <img src="{{ url_for('uploaded_file', filename=im8) }}" alt="Sketch Image">
+            <img src="{{ url_for('uploaded_file', filename=col8) }}" alt="Color Image">
+        </div>
+        <div class="image-caption">Color image #4</div>
+    </div>
+    <div class="image-wrapper">
+        <div class="image-container" onclick="openImage('{{ url_for('uploaded_file', filename=im9) }}')">
+            <img src="{{ url_for('uploaded_file', filename=im9) }}" alt="Sketch Image">
+            <img src="{{ url_for('uploaded_file', filename=col9) }}" alt="Color Image">
+        </div>
+        <div class="image-caption">Color image #5</div>
+    </div>
+    <div class="image-wrapper">
+        <div class="image-container" onclick="openImage('{{ url_for('uploaded_file', filename=im10) }}')">
+            <img src="{{ url_for('uploaded_file', filename=im10) }}" alt="Sketch Image">
+            <img src="{{ url_for('uploaded_file', filename=col10) }}" alt="Color Image">
+        </div>
+        <div class="image-caption">Color image #6</div>
+    </div>
+   </div>
+
+   <div class="butt-container">
+    <button class="home" onclick="window.location.href = '/';">Return to home</button>
+   </div>
+   <script>
+       // JavaScript function to open images in a new tab
+       function openImage(url) {
+           window.open(url, '_blank');
+       }
+   </script>
+</body>
+</html>
