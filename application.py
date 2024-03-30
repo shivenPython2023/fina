@@ -4,11 +4,11 @@ from flask import Flask, render_template, request, redirect, url_for, send_from_
 
 
 
-app= Flask(__name__)
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+application= Flask(__name__)
+application.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 
-@app.route('/')
+@application.route('/')
 def index():
  return 'helo world',render_template('index.html')
 
@@ -27,7 +27,7 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 
 
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+application.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 
@@ -41,8 +41,8 @@ def allowed_file(filename):
 
 
 
-@app.route('/color.html', methods=['GET', 'POST'])
-@app.route('/color', methods=['GET', 'POST'])
+@application.route('/color.html', methods=['GET', 'POST'])
+@application.route('/color', methods=['GET', 'POST'])
 def color_html():
    if request.method == 'POST':
        if 'file' not in request.files:
@@ -52,8 +52,8 @@ def color_html():
            return redirect(request.url)
        if file and allowed_file(file.filename):
            filename = secure_filename(file.filename)
-           file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-           input_image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+           file.save(os.path.join(application.config['UPLOAD_FOLDER'], filename))
+           input_image_path = os.path.join(application.config['UPLOAD_FOLDER'], filename)
 
 
            file_str = str(filename)
@@ -63,32 +63,32 @@ def color_html():
            # Simplify the input image
            simplified_image_paths = {}
            for i in range(2, 11):
-               simplified_image_paths[i] = os.path.join(app.config['UPLOAD_FOLDER'], file_name + f'simplified{i}.jpg')
+               simplified_image_paths[i] = os.path.join(application.config['UPLOAD_FOLDER'], file_name + f'simplified{i}.jpg')
                simplify_image(input_image_path, simplified_image_paths[i], i)
 
 
-           simplified_image_paths_for1=os.path.join(app.config['UPLOAD_FOLDER'], file_name + f'simplified{"2"}.jpg')
+           simplified_image_paths_for1=os.path.join(application.config['UPLOAD_FOLDER'], file_name + f'simplified{"2"}.jpg')
            simplify_image_for1(input_image_path, simplified_image_paths_for1, 2)
 
 
            outline_image_paths = {}
            for i in range(2, 6):
-               outline_image_paths[i] = os.path.join(app.config['UPLOAD_FOLDER'], file_name + f'outline_{i}.jpg')
+               outline_image_paths[i] = os.path.join(application.config['UPLOAD_FOLDER'], file_name + f'outline_{i}.jpg')
                create_outline(simplified_image_paths[i], outline_image_paths[i])
           
            grid_image_paths={}
            for i in range(2, 6):
-               grid_image_paths[i] = os.path.join(app.config['UPLOAD_FOLDER'], file_name + f'grid{i}.jpg')
+               grid_image_paths[i] = os.path.join(application.config['UPLOAD_FOLDER'], file_name + f'grid{i}.jpg')
                create_grid(outline_image_paths[i], grid_image_paths[i])
 
 
            color_image_paths={}
            for i in range(2, 11):
-               color_image_paths[i] = os.path.join(app.config['UPLOAD_FOLDER'], file_name + f'color{i}.jpg')
+               color_image_paths[i] = os.path.join(application.config['UPLOAD_FOLDER'], file_name + f'color{i}.jpg')
                get_dominant_colors(simplified_image_paths[i], color_image_paths[i], i)
 
 
-           output_image_path_for_canvas = os.path.join(app.config['UPLOAD_FOLDER'], file_name + 'plain.jpg')
+           output_image_path_for_canvas = os.path.join(application.config['UPLOAD_FOLDER'], file_name + 'plain.jpg')
            create_white_canvas(input_image_path, output_image_path_for_canvas)
 
 
@@ -106,7 +106,7 @@ def color_html():
 
 
 
-@app.route('/realcolor.html', methods=['GET', 'POST'])
+@application.route('/realcolor.html', methods=['GET', 'POST'])
 def realcolor_html():
    file_name = session.get('file_name')  # Get file_name from session
    if not file_name:
@@ -121,9 +121,9 @@ def realcolor_html():
 
 
 
-@app.route('/uploads/<filename>')
+@application.route('/uploads/<filename>')
 def uploaded_file(filename):
- return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+ return send_from_directory(application.config['UPLOAD_FOLDER'], filename)
 
 
 
@@ -133,7 +133,7 @@ def uploaded_file(filename):
 
 
 if __name__ == '__main__':
- app.run()
+ application.run()
 
 
 
