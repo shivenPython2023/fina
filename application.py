@@ -42,7 +42,7 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 
 
-application.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 
@@ -581,7 +581,7 @@ def uploaded_file(filename):
 
 
 if __name__ == '__main__':
- application.run()
+ app.run()
 
 
 
