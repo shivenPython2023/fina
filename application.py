@@ -166,7 +166,7 @@ def simplify_image(input_image_path, output_image_path, num_clusters):
 
 def create_outline(input_image_path, output_image_path):
    try:
-matplotlib.use('Agg')
+       matplotlib.use('Agg')
        # Loading Original Image
        img = cv2.imread(input_image_path)
        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
