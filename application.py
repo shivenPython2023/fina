@@ -10,7 +10,7 @@ application.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 @application.route('/')
 def index():
- return 'helo world',render_template('index.html')
+ return render_template('index.html')
 
 
 
