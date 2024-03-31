@@ -516,10 +516,10 @@ def color_html():
            temp_file_str = str(filename)
            temp_file_name = remove_extension(file_str)
            temp_input_image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-           temp_output_image_path = os.path.join(app.config['UPLOAD_FOLDER'] + "compressed"+ temp_file_name)
+           temp_output_image_path = os.path.join(app.config['UPLOAD_FOLDER'], "compressed", temp_file_name)
            file_size=500
            compress_image(temp_input_image_path, temp_output_image_path, file_size)
-           input_image_path= os.path.join(app.config['UPLOAD_FOLDER'] + "compressed"+ temp_file_name)
+           input_image_path = os.path.join(app.config['UPLOAD_FOLDER'], "compressed", temp_file_name)
            
 
 
