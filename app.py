@@ -59,6 +59,7 @@ def compress_image(image_path, new_image_path, new_size):
         new_w = new_size
         new_h = int(h * (new_size / w))
     image = image.resize((new_w, new_h), resample=Image.BICUBIC)
+    print("image simplified")
     image.save(new_image_path, optimize=True, quality=60)
 
 
