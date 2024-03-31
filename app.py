@@ -273,7 +273,7 @@ def compress_image(image_path, new_image_path, new_size):
         new_w = new_size
         new_h = int(h * (new_size / w))
     image = image.resize((new_w, new_h), resample=Image.BICUBIC)
-    image.save(new_image_path, optimize=True, quality=50)
+    image.save(new_image_path, optimize=True, quality=80)
 
 def get_file_extension(filename):
     # Split the filename by dot to separate the extension
@@ -529,7 +529,7 @@ def color_html():
            extension_str= str(extension)
            temp_input_image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
            temp_output_image_path = os.path.join(app.config['UPLOAD_FOLDER'], "compressed"+ temp_file_name+ extension_str)
-           file_size=200
+           file_size=250
            compress_image(temp_input_image_path, temp_output_image_path, file_size)
            input_image_path= os.path.join(app.config['UPLOAD_FOLDER'], "compressed"+ temp_file_name+ extension_str)
 
