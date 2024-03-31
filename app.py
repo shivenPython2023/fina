@@ -263,6 +263,28 @@ def remove_extension(file_path):
    # If no dot is found or it's the first character, return the original file path
    return file_path
 
+def compress_image(image_path, new_image_path, new_size):
+    image = Image.open(image_path)
+    w, h = image.size
+    if h > w:
+        new_h = new_size
+        new_w = int(w * (new_size / h))
+    else:
+        new_w = new_size
+        new_h = int(h * (new_size / w))
+    image = image.resize((new_w, new_h), resample=Image.BICUBIC)
+    image.save(new_image_path, optimize=True, quality=60)
+
+def get_file_extension(filename):
+    # Split the filename by dot to separate the extension
+    parts = filename.split('.')
+    
+    # If there's only one part or the last part is empty, return an empty string
+    if len(parts) == 1 or parts[-1] == '':
+        return ''
+    
+    # Otherwise, return the last part (the extension) with a dot
+    return '.' + parts[-1]
 
 def add_grid2(image, output_image_path):
   # Get image dimensions
@@ -501,7 +523,15 @@ def color_html():
        if file and allowed_file(file.filename):
            filename = secure_filename(file.filename)
            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-           input_image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+           temp_file_str = str(filename)
+           temp_file_name = remove_extension(temp_file_str)
+           extension= get_file_extension(temp_file_str)
+           extension_str= str(extension)
+           temp_input_image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+           temp_output_image_path = os.path.join(app.config['UPLOAD_FOLDER'], "compressed"+ temp_file_name+ extension_str)
+           file_size=500
+           compress_image(temp_input_image_path, temp_output_image_path, file_size)
+           input_image_path= os.path.join(app.config['UPLOAD_FOLDER'], "compressed"+ temp_file_name+ extension_str)
 
 
            file_str = str(filename)
