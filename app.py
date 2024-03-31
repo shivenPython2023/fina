@@ -511,7 +511,7 @@ def color_html():
        if file.filename == '':
            return redirect(request.url)
        if file and allowed_file(file.filename):
-           filename = secure_filename(file.filename)
+           filename = file.filename
            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
            temp_file_str = str(filename)
            temp_file_name = remove_extension(file_str)
