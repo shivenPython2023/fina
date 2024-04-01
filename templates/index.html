@@ -51,7 +51,7 @@
     }
     p{
         text-align: center;
-        color: rgb(37, 36, 36);
+        color: rgb(0, 0, 0);
         margin-left: 2.5cm;
         margin-right: 2.5cm;
     }
@@ -68,6 +68,16 @@
         font-size: 16px;
         cursor: pointer;
         text-align: center;
+    }
+    .image-banner{
+        color: rgb(206, 198, 198);
+        text-align: center;
+        margin-top:20px;
+        padding: 20px;
+        font-size: small;
+        width: 100%; /* Adjust the width as needed */
+        margin: 0 auto; /* Center horizontally */
+        border-radius: 10px;
     }
     .image-banner {
         text-align: center;
@@ -181,6 +191,10 @@
     .baner p {
         color:white;
     }
+    .baner h2{
+        color:rgb(0, 0, 0);
+        font-size: larger;
+    }
 </style>
 <body>
     <!--top of home page & title-->
@@ -196,6 +210,7 @@
     <!--banner-->
     <div class="image-banner">
         <img src="{{ url_for('static', filename='banner.png') }}" alt="Banner Image">
+        <p>Photo by Diogo Nunes on Unsplash</p>
     </div>
     <!--welcome to drawing assistant-->
     <h1>Welcome to Drawing Assistant</h1>
@@ -233,8 +248,9 @@
         <a href="/color.html"><button class="get-started-button">Get Started with Drawing Assistant!</button></a>
     </div>
     <div class="baner">
-        <h2>About Us</h2>
-        <p>Drawing Assistant was made by a local group in Cumberland, Rhode Island composed of middle schoolers. Our mission is to foster creativity and provide a supportive environment for individuals of all ages and skill levels to explore the world of drawing. We offer high level technology to aid you in your drawing journey.</p>
+        <h3>About Us</h3>
+        <p>Drawing Assistant was made by a Robotics group in Cumberland, Rhode Island composed of middle schoolers. Our mission is to foster creativity and provide a supportive environment for individuals of all ages and skill levels to explore the world of drawing. We offer high level technology to aid you in your drawing journey.</p>
+        <h2>Developed by Shiven Jha and the Robotic Terriers</h2>
     </div>
 
     <script>
