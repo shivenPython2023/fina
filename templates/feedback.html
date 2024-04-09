@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Give us Feeback!</h1>
+    <div class="horizontal-line">
+        <hr>
+        <div class="button-container">
+            <button onclick="window.location.href = '/';">Home</button>
+            <button onclick="window.location.href = '/color.html';">Let's go!</button>
+            <button onclick="window.location.href = '/feedback.html';">Give us Feedback</button>
+        </div>
+        <hr>
+    </div>
+    <div class="contact-container">
+        <form  action="https://api.web3forms.com/submit" method="POST" class="contact-left">
+            <div class="contact-left-title">
+                <h2>Feedback form</h2>
+                <hr>
+            </div>
+            <input type="hidden" name="access_key" value="c9aac341-53ee-4350-8846-e46b45d44224">
+            <input type="text" name="name" placeholder="Your Name" class="contact-inputs" required>
+            <input type="email" name="email" placeholder="Your Email" class="contact-inputs" required>
+            <textarea name="message" placeholder="Your Message" class="contact-inputs" required></textarea>
+            <button type="submit">Submit <img src="{{ url_for('static', filename='arrow_icon.png') }}" alt=""></button>
+        </form>
+        <div class="contact-right">
+            <img src="{{ url_for('static', filename='right_img.png') }}" alt="">
+        </div>
+    </div>
+</body>
+</html>
