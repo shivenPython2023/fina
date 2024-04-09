@@ -596,7 +596,9 @@ def realcolor_html():
    return render_template('realcolor.html', im2=file_name + 'simplified2.jpg', im3=file_name + 'simplified3.jpg', im4=file_name + 'simplified4.jpg', im5=file_name + 'simplified5.jpg', im6=file_name + 'simplified6.jpg', im7=file_name + 'simplified7.jpg', im8=file_name + 'simplified8.jpg', im9=file_name + 'simplified9.jpg', im10=file_name + 'simplified10.jpg',
                           col2= file_name + 'color2.jpg', col3= file_name + 'color3.jpg', col4= file_name + 'color4.jpg', col5= file_name + 'color5.jpg', col6= file_name + 'color6.jpg', col7= file_name + 'color7.jpg', col8= file_name + 'color8.jpg',  col9= file_name + 'color9.jpg', col10= file_name + 'color10.jpg',)
 
-
+@app.route("/feedback.html", methods=['GET', 'POST'])
+def feedback_html():
+   return render_template('feedback.html')
 
 
 @app.route('/uploads/<filename>')
