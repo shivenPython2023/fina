@@ -217,10 +217,15 @@
         font-size: larger;
     }
     @media (max-width:978px){
-        .image-banner{
-            width: 100vw;
+        .why{
+            max-width: 450px;
             height: auto; /* Allow the height to adjust based on the width */
         }
+        .des{
+            margin-right:0%;
+            margin-left:0%
+        }
+        
     }
 </style>
 <body>
@@ -237,7 +242,7 @@
     <p class="des">Upload an image and the Drawing Assistant will show you how to recreate it!</p>
     <!--banner-->
     <div class="image-banner">
-        <img src="{{ url_for('static', filename='banner.png') }}" alt="Banner Image">
+        <img class="why" src="{{ url_for('static', filename='banner.png') }}" alt="Banner Image">
         <p>Photo by Diogo Nunes on Unsplash</p>
     </div>
     <!--welcome to drawing assistant-->
