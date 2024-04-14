@@ -226,9 +226,16 @@
             margin-right:0%;
             margin-left:0%
         }
-        .link-container{
-            margin-left: 0%;
-            margin-right: 0%;
+        .link-container {
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+            flex-wrap: wrap;
+        }
+        .link {
+            width: calc(50% - 10px);
+            padding: 10px 20px;
+            box-sizing: border-box;
         }
         .repaton{
             margin-left: 0.1cm;
@@ -236,12 +243,25 @@
         }
         .get-started-button{
             white-space: nowrap;
+            font-size:20px;
         }
         .buttoncontainer{
             margin-left: 0%;
             margin-right: 0%;
         }
-        
+        .qa-section {
+            margin-left: 0;
+            margin-right: 0;
+        }
+        .qa-button {
+            width: 100%;
+        }
+        .qa-answer {
+            width: 100%;
+        }
+        .banner{
+            width: calc(100% - 15px);
+        }
     }
 </style>
 <body>
