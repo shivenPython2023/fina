@@ -56,31 +56,34 @@
           border-radius: 5px;
           cursor: pointer;
       }
-      .display {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 20px;
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-      }
-      .image-wrapper {
-          margin: 10px;
-          text-align: center;
-          display: flex;
-          flex-direction: column;
-      }
-      .image-wrapper img {
-          min-width: 30px;
-          max-height: 250px;
-          min-height: 250px;
-          cursor: pointer;
-          max-width: calc(100vw - 50px);
-      }
-      .image-caption {
-          margin-top: 10px;
-          font-size: 16px;
-      }
+.display {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.image-wrapper {
+    margin: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.image-container {
+    display: flex;
+}
+.image-wrapper img {
+    min-width: 30px;
+    max-height: 250px;
+    min-height: 250px;
+    cursor: pointer;
+    max-width: calc(100vw - 50px);
+}
+.image-caption {
+    margin-top: 10px;
+    font-size: 16px;
+}
       .butt-container{
         display: flex;
         justify-content: center; /* This will horizontally center the buttons */
